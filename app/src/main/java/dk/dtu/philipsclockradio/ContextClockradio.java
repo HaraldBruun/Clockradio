@@ -84,11 +84,11 @@ public class ContextClockradio {
         presets.add(AM4);
         presets.add(AM5);
 
-        PS1 = new Radio();
-        PS2 = new Radio();
-        PS3 = new Radio();
-        PS4 = new Radio();
-        PS5 = new Radio();
+        PS1 = new Radio(); PS1.setRadioType('F'); PS1.setFrequence(85);
+        PS2 = new Radio(); PS2.setRadioType('A'); PS2.setFrequence(30);
+        PS3 = new Radio(); PS3.setRadioType('F'); PS3.setFrequence(36);
+        PS4 = new Radio(); PS4.setRadioType('A'); PS4.setFrequence(99);
+        PS5 = new Radio(); PS5.setRadioType('A'); PS5.setFrequence(18);
 
     }
     public Radio getFM1() { return FM1; }
@@ -110,6 +110,26 @@ public class ContextClockradio {
     public Radio getAM4() { return AM4; }
 
     public Radio getAM5() { return AM5; }
+
+    public Radio getPS1() {  return PS1; }
+
+    public void setPS1(Radio PS1) {this.PS1 = PS1;}
+
+    public Radio getPS2() {return PS2;}
+
+    public void setPS2(Radio PS2) {this.PS2 = PS2;}
+
+    public Radio getPS3() {return PS3;}
+
+    public void setPS3(Radio PS3) {this.PS3 = PS3;}
+
+    public Radio getPS4() {return PS4;}
+
+    public void setPS4(Radio PS4) {this.PS4 = PS4;}
+
+    public Radio getPS5() {return PS5;}
+
+    public void setPS5(Radio PS5) {this.PS5 = PS5;}
 
     public Radio getPresets(int ps){
         Radio radio = new Radio();
@@ -133,6 +153,7 @@ public class ContextClockradio {
         }
         return radio;
     }
+
 
     public List<Radio> getPresets() {
         return presets;

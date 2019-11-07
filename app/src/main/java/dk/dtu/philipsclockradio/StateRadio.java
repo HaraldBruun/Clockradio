@@ -13,6 +13,7 @@ public class StateRadio extends StateAdapter {
 
     private ContextClockradio context;
     private int LEDnumber;
+    private boolean firstTime = true;
 
 
     @Override
@@ -20,6 +21,8 @@ public class StateRadio extends StateAdapter {
         ui.toggleRadioPlaying(true);
         ui.setDisplayText(Character.toString(context.getRadio().getRadioType()) + "M" + context.getRadio().getFrequence());
         LEDnumber = 1;
+        ui.shutdownLED();
+        ui.turnOnLED(LEDnumber);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class StateRadio extends StateAdapter {
     }
 
     @Override
-    // Lavet enkelt med preset-eksempler. Har lidt bugs.
+    // Lavet scanner med onLongClick på hour og min, scanner op- og nedad.
     public void onLongClick_Hour(ContextClockradio context) {
         ContextClockradio c = context;
         if (context.getRadio().getRadioType() == 'F') {
@@ -109,22 +112,56 @@ public class StateRadio extends StateAdapter {
 
     @Override
     public void onLongClick_Preset(ContextClockradio context) {
-        if(LEDnumber != 1){
-            ui.turnOffLED(LEDnumber - 1);
-        } else {
-            ui.turnOffLED(5);
-            ui.turnOffLED(1);
+        //Log.d(Integer.toString(LEDnumber), "onLongClick_Preset: ");
+        if (firstTime){
+            ui.turnOnLEDBlink(LEDnumber);
+            firstTime = false;
+            // Der er en mindre bug her, er der resulterer i at displayText ikke ændrer sig hensigtsmæssigt.
+        }
+        else LEDnumber++;
+        ui.shutdownLED();
+        ui.turnOffLEDBlink();
+        ui.turnOnLEDBlink(LEDnumber);
+         if (LEDnumber == 1) {
+             context.getRadio().setRadioType(context.getPS1().getRadioType());
+             context.getRadio().setFrequence(context.getPS1().getFrequence());
+             ui.setDisplayText(Character.toString(context.getPS1().getRadioType()) + "M" + context.getPS1().getFrequence());
+        } else if (LEDnumber == 2) {
+             context.getRadio().setRadioType(context.getPS2().getRadioType());
+             context.getRadio().setFrequence(context.getPS2().getFrequence());
+             ui.setDisplayText(Character.toString(context.getPS2().getRadioType()) + "M" + context.getPS2().getFrequence());
+        } else if (LEDnumber == 3) {
+             context.getRadio().setRadioType(context.getPS3().getRadioType());
+             context.getRadio().setFrequence(context.getPS3().getFrequence());
+             ui.setDisplayText(Character.toString(context.getPS3().getRadioType()) + "M" + context.getPS3().getFrequence());
+        } else if (LEDnumber == 4) {
+             context.getRadio().setRadioType(context.getPS4().getRadioType());
+             context.getRadio().setFrequence(context.getPS4().getFrequence());
+             ui.setDisplayText(Character.toString(context.getPS4().getRadioType()) + "M" + context.getPS4().getFrequence());
+        } else if (LEDnumber == 5) {
+             context.getRadio().setRadioType(context.getPS5().getRadioType());
+             context.getRadio().setFrequence(context.getPS5().getFrequence());
+             ui.setDisplayText(Character.toString(context.getPS5().getRadioType()) + "M" + context.getPS5().getFrequence());
+            LEDnumber = 0;
+        }
+    }
 
-        }
+    @Override
+    public void onClick_Preset(ContextClockradio context) {
+        ui.turnOffLEDBlink();
         ui.turnOnLED(LEDnumber);
-        if(!(Character.toString(context.getPresets(LEDnumber).getRadioType()).equals(Character.toString((context.getRadio().getRadioType()))))){
-            context.getRadio().changeRadioType();
-        }
-        context.getRadio().setFrequence(context.getPresets(LEDnumber).getFrequence());
-        ui.setDisplayText(context.getRadio().getRadioType() + Integer.toString(context.getRadio().getFrequence()));
-        LEDnumber++;
-        if(LEDnumber == 6){
-            LEDnumber = 1;
+        firstTime = true;
+        if (LEDnumber == 1) {
+            context.setPS1(context.getRadio());
+        } else if (LEDnumber == 2) {
+            context.setPS2(context.getRadio());
+        } else if (LEDnumber == 3) {
+            context.setPS3(context.getRadio());
+        } else if (LEDnumber == 4) {
+            context.setPS4(context.getRadio());
+        } else if (LEDnumber == 5) {
+            context.setPS5(context.getRadio());
+            LEDnumber = 0;
         }
     }
 

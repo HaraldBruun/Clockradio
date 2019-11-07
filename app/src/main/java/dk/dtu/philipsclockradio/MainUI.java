@@ -208,6 +208,15 @@ public class MainUI extends AppCompatActivity implements OnTouchListener {
                 break;
         }
     }
+    public void shutdownLED(){
+        displayLed1=false;
+        displayLed2=false;
+        displayLed3=false;
+        displayLed4=false;
+        displayLed5=false;
+        updateUI();
+
+    }
 
     private void updateUI(){
         circle1.setVisibility(displayLed1 ? View.VISIBLE : View.INVISIBLE);
@@ -231,6 +240,32 @@ public class MainUI extends AppCompatActivity implements OnTouchListener {
         timeTextView.clearAnimation();
     }
 
+    public void turnOnLEDBlink(int LEDnumber){
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(400);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        if (LEDnumber == 1){
+            circle1.startAnimation(anim);
+        } else if (LEDnumber == 2){
+            circle2.startAnimation(anim);
+        } else if (LEDnumber == 3){
+            circle3.startAnimation(anim);
+        } else if (LEDnumber == 4){
+            circle4.startAnimation(anim);
+        } else if (LEDnumber == 5) {
+            circle5.startAnimation(anim);
+        }
+    }
+
+    public void turnOffLEDBlink(){
+        circle1.clearAnimation();
+        circle2.clearAnimation();
+        circle3.clearAnimation();
+        circle4.clearAnimation();
+        circle5.clearAnimation();
+    }
     public void toggleRadioPlaying(boolean isPlaying){
         musicPlaying = !musicPlaying;
         if(musicPlaying){
