@@ -174,8 +174,9 @@ public class StateRadio extends StateAdapter {
     @Override
     public void onExitState(ContextClockradio context) {
         super.onExitState(context);
-        ui.turnOffLED(1);
         ui.toggleRadioPlaying(false);
         context.updateDisplayTime();
+        ui.shutdownLED();
+        ui.turnOffLEDBlink();
     }
 }

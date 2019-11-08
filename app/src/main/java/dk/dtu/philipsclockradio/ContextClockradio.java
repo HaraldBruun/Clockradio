@@ -13,6 +13,7 @@ public class ContextClockradio {
     public boolean isClockRunning = false;
     private Radio radio, FM1, FM2, FM3, FM4, FM5, AM1, AM2, AM3, AM4, AM5, PS1, PS2, PS3, PS4, PS5;
     private List<Radio> presets = new ArrayList<Radio>();
+    private Alarm alarm_1, alarm_2, alarmSet;
 
     public static MainUI ui;
 
@@ -30,6 +31,7 @@ public class ContextClockradio {
         radio.setFrequence(42);
         radio.setRadioType('F');
         radioPresets();
+        presetAlarm();
 
 
         //Når app'en starter, så går vi ind i Standby State
@@ -89,8 +91,19 @@ public class ContextClockradio {
         PS3 = new Radio(); PS3.setRadioType('F'); PS3.setFrequence(36);
         PS4 = new Radio(); PS4.setRadioType('A'); PS4.setFrequence(99);
         PS5 = new Radio(); PS5.setRadioType('A'); PS5.setFrequence(18);
-
     }
+
+    public Alarm getAlarm(int ID){
+        if (ID == 1) {
+            return alarm_1;
+        }
+        else if (ID == 2) {
+            return alarm_2;
+        }
+        else return alarmSet;
+    }
+
+
     public Radio getFM1() { return FM1; }
 
     public Radio getFM2() { return FM2; }
@@ -154,9 +167,18 @@ public class ContextClockradio {
         return radio;
     }
 
-
+    public void presetAlarm(){
+        Calendar alarmPreset = Calendar.getInstance();
+        alarmPreset.set(2019,1,1,12,0);
+        alarm_1 = new Alarm(alarmPreset.getTime());
+        alarm_2 = new Alarm(alarmPreset.getTime());
+        alarmSet = new Alarm(alarmPreset.getTime());
+    }
     public List<Radio> getPresets() {
         return presets;
+    }
+    public State getCurrentState() {
+        return currentState;
     }
 
     public Radio getRadio(){
