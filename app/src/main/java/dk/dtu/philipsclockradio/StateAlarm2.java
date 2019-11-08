@@ -4,12 +4,6 @@ import static dk.dtu.philipsclockradio.ContextClockradio.ui;
 
 public class StateAlarm2 extends StateAdapter {
     int alarmID;
-    State previousState;
-
-    public void StateAlarm(int alarmID, State previousState){
-        this.alarmID = alarmID;
-        this.previousState = previousState;
-    }
 
     @Override
     public void onEnterState(ContextClockradio context) {

@@ -177,6 +177,5 @@ public class StateRadio extends StateAdapter {
         ui.toggleRadioPlaying(false);
         context.updateDisplayTime();
         ui.shutdownLED();
-        ui.turnOffLEDBlink();
     }
 }

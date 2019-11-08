@@ -273,7 +273,15 @@ public class MainUI extends AppCompatActivity implements OnTouchListener {
         } else {
             statusTextview.setText("Radio: OFF");
         }
+    }
 
+    public void toggleAlarmPlaying(boolean isPlaying){
+        musicPlaying = !musicPlaying;
+        if(musicPlaying){
+            statusTextview.setText("Alarm: ON");
+        } else {
+            statusTextview.setText("Alarm: OFF");
+        }
     }
 
 

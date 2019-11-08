@@ -3,6 +3,7 @@ package dk.dtu.philipsclockradio;
 public class Radio {
     private int frequence;
     private char radioType;
+    private boolean isPlaying;
 
     public void Radio(char radioType, int frequence){
         this.radioType = radioType;
@@ -31,6 +32,14 @@ public class Radio {
         this.radioType = radioType;
     }
 
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
+    }
+
     public static void checkFrequence(ContextClockradio context) {
         if (context.getRadio().getFrequence() >= 100) {
             context.getRadio().setFrequence(1);
@@ -38,4 +47,5 @@ public class Radio {
             context.getRadio().setFrequence(99);
         }
     }
+
 }
