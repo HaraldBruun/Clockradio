@@ -25,18 +25,6 @@ public class StateAlarm2 extends StateAdapter {
     }
 
     @Override
-    public void onLongClick_AL1(ContextClockradio context) {
-        context.getAlarm(alarmID).setTime(context.getAlarm(alarmID).getTime());
-        ui.setDisplayText(context.getAlarm(alarmID).getAlarmDisplay());
-    }
-
-    @Override
-    public void onLongClick_AL2(ContextClockradio context) {
-        context.getAlarm(alarmID).setTime(context.getAlarm(alarmID).getTime());
-        ui.setDisplayText(context.getAlarm(alarmID).getAlarmDisplay());
-    }
-
-    @Override
     public void onClick_AL1(ContextClockradio context) {
         ui.setDisplayText(context.getAlarm(alarmID).getAlarmDisplay());
         context.setState(new StateStandby(context.getTime()));

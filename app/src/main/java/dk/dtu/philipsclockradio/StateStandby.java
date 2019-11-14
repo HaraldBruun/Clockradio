@@ -13,7 +13,7 @@ public class StateStandby extends StateAdapter {
         this.time = time;
     }
 
-    //Opdaterer hvert 60. sekund med + 1 min til tiden
+    // Opdaterer hvert 60. sekund med + 1 min til tiden
     Runnable setTime = new Runnable() {
 
         @Override
@@ -73,4 +73,11 @@ public class StateStandby extends StateAdapter {
         context.setState(new StateAlarm1());
     }
 
+    @Override
+    public void onLongClick_AL2(ContextClockradio context) { context.setState(new StateAlarm2()); }
+
+    @Override
+    public void onClick_AL1(ContextClockradio context) {
+        context.getAlarm(1).setAlarm
+    }
 }

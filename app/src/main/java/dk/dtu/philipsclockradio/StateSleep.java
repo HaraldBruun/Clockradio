@@ -38,6 +38,7 @@ public class StateSleep extends StateAdapter {
                 handler.removeCallbacks(toStandby);
                 handler.postDelayed(sleepTimer,sleep*1000);
                 handler.postDelayed(toStandby,5000);
+                ui.setDisplayText(Integer.toString(sleep));
                 break;
 
             case 1:
@@ -45,6 +46,7 @@ public class StateSleep extends StateAdapter {
                 handler.removeCallbacks(toStandby);
                 handler.postDelayed(sleepTimer,sleep*1000);
                 handler.postDelayed(toStandby,5000);
+                ui.setDisplayText(Integer.toString(sleep));
                 break;
 
             case 2:
@@ -52,6 +54,7 @@ public class StateSleep extends StateAdapter {
                 handler.removeCallbacks(toStandby);
                 handler.postDelayed(sleepTimer,sleep*1000);
                 handler.postDelayed(toStandby,5000);
+                ui.setDisplayText(Integer.toString(sleep));
                 break;
 
             case 3:
@@ -59,16 +62,15 @@ public class StateSleep extends StateAdapter {
                 handler.removeCallbacks(toStandby);
                 handler.postDelayed(sleepTimer,sleep*1000);
                 handler.postDelayed(toStandby,5000);
+                ui.setDisplayText(Integer.toString(sleep));
                 break;
             case 4:
                 handler.removeCallbacks(toStandby);
                 handler.removeCallbacks(sleepTimer);
                 handler.postDelayed(toStandby,5000);
-                handler.post(toStandby);
-                ui.setDisplayText("S OFF");
+                ui.setDisplayText("OFF");
                 break;
         }
-        ui.setDisplayText(Integer.toString(sleep));
         c++;
     }
 }

@@ -174,6 +174,10 @@ public class ContextClockradio {
         alarm_2 = new Alarm(alarmPreset.getTime());
         alarmSet = new Alarm(alarmPreset.getTime());
     }
+
+
+
+
     public List<Radio> getPresets() {
         return presets;
     }

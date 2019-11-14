@@ -39,4 +39,6 @@ public class Alarm {
     public void setPlaying(boolean playing) {
         isPlaying = playing;
     }
+
+
 }
